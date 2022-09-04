@@ -34,9 +34,10 @@ if(isset($_POST['send'])) {
     }
 
     if(empty($error)) { 
+        $showPassword = $_POST['password'];
         $_POST['password'] = password_hash($_POST['password'], false);
-        $time = time();
-        $db->query("INSERT INTO `users` (`login`, `password`, `name`, `patronymic`, `sername`, `email`, `birth_date`, `time_signup`) VALUES('{$_POST['login']}', '{$_POST['password']}', '{$_POST['name']}', '{$_POST['patronymic']}', '{$_POST['sername']}', '{$_POST['email']}', '{$_POST['birthdate']}', $time)"); 
+        $registrationDate = date("Y-m-d");
+        $db->query("INSERT INTO `users` (`login`, `password`, `name`, `patronymic`, `sername`, `email`, `birth_date`, `registration_date`,`role`, `show_password`) VALUES('{$_POST['login']}', '{$_POST['password']}', '{$_POST['name']}', '{$_POST['patronymic']}', '{$_POST['sername']}', '{$_POST['email']}', '{$_POST['birthdate']}', '$registrationDate', 'reader', '$showPassword')"); 
         header("Location: login.php");
     } else {
         echo $error[0];
@@ -44,18 +45,11 @@ if(isset($_POST['send'])) {
 
 }
 
+
+
+$pageTitle = "Зарегистрироваться";
+require_once "$path/private/head.php"; 
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <?php
-    require_once "$path/private/head.php"; 
-    ?>
-    <title>Регистрация</title>
-</head>
-
 <body>
 <?php
     require_once "$path/private/header.php"; 
@@ -101,7 +95,7 @@ if(isset($_POST['send'])) {
         let form = document.querySelector(".registration-form");
         let password = document.getElementById("password");
         let confirmPassword = document.getElementById("confirmPassword");
-        form.onsubmit = () => {
+        form.onsubmit = event => {
             if(password.value == "") {
                 alert("Введите пароль");
                 event.preventDefault();

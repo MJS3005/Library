@@ -2,10 +2,17 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 require_once "$path/system/db.php";
 
+if(empty($_SESSION['auth'])) {
+    if(isset($_COOKIE['login'])) {
+        $_SESSION['login'] = $_COOKIE['login'];
+    }
+}
 if(isset($_POST['logOut'])) {
-    $db->query("UPDATE `users` SET `status` = 'offline' WHERE `login` = '{$_SESSION['login']}' OR `id` = '{$_SESSION['login']}'");
+    $db->query("UPDATE `users` SET `status` = 'offline' WHERE `id` = '{$_SESSION['login']}'");
+    mysqli_query($db, ("UPDATE `users` SET `status` = 'offline' WHERE `login` = '$_SESSION[login]'"));
     $_SESSION['auth'] = NULL;
     $_SESSION['login'] = NULL;
+    unset($_COOKIE['login']);
     header("Location: /index.php");
 }
 

@@ -7,19 +7,28 @@ if($_SESSION['auth'] == true) {
 }
 
 if(isset($_POST['send'])) {
-   
     $query = $db->query("SELECT * FROM `users` WHERE `login` = '{$_POST['login']}' OR `id` = '{$_POST['login']}'");
 
     if ($query->num_rows > 0) {
         $password = $query->fetch_assoc()['password'];
-
+        
         if(password_verify($_POST['password'], $password)){
             $_SESSION['auth'] = true;
             $_SESSION['login'] = $_POST['login'];
+            $_SESSION['role'] = mysqli_fetch_all(mysqli_query($db, ("SELECT `role` FROM `users` WHERE `id` = '$_SESSION[login]' OR `login` = '$_SESSION[login]'")), MYSQLI_ASSOC)[0]['role'];
+            
+            mysqli_query($db, ("UPDATE `users` SET `status` = 'online' WHERE `id` = '$_SESSION[login]'"));
+            mysqli_query($db, ("UPDATE `users` SET `status` = 'online' WHERE `login` = '$_SESSION[login]'"));
+            if($_SESSION['role'] == "employee") {
+                header("Location: accounting.php");
+            } else {
+                header("Location: lk.php");    
+            }
 
-            $db->query("UPDATE `users` SET `status` = 'online' WHERE `login` = '{$_SESSION['login']}' OR `id` = '{$_SESSION['login']}'");
-            header("Location: lk.php");
-
+            if (isset($_POST['login-remember'])) {
+                $timeOutCookie = time()+60*60*24*180;
+                setcookie("login", $_POST['login'], $timeOutCookie);
+            } 
         } else {
             echo "Неверный пароль";
         }
@@ -28,18 +37,11 @@ if(isset($_POST['send'])) {
     }
 };
 
+
+
+$pageTitle = "Вход в личный кабинет";
+require_once "$path/private/head.php"; 
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <?php
-    require_once "$path/private/head.php"; 
-    ?>
-    <title>Вход в личный кабинет</title>
-</head>
-
 <body>
     <?php
     require_once "$path/private/header.php"; 

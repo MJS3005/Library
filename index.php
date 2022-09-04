@@ -1,18 +1,11 @@
 <?
 $path = $_SERVER['DOCUMENT_ROOT'];
 session_start();
-?>
 
-<!DOCTYPE html>
-<html lang="ru">
 
-<head>
-    <?php
-    require_once "$path/private/head.php"; 
-    ?>
-    <title>Библиотека на Майской</title>
-</head>
-
+$pageTitle = 'Библиотека на Майской';
+require_once "$path/private/head.php"; 
+?>    
 <body>
     <?php
     require_once "$path/private/header.php"; 

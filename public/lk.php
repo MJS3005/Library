@@ -6,17 +6,14 @@ if(empty($_SESSION['auth'])) {
     header("Location: /index.php");
 }
 
+if($_SESSION['role'] == "employee") {
+    header("Location: accounting.php");
+} 
+
+
+$pageTitle = "Личный кабинет";
+require_once "$path/private/head.php"; 
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <?php
-    require_once "$path/private/head.php"; 
-    ?>
-    <title>Личный кабинет</title>
-</head>
 
 <body>
     <?php

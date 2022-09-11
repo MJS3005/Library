@@ -141,6 +141,7 @@ header {
     width: auto;
     justify-self: start;
 }
+
 .account a:hover {
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -170,6 +171,7 @@ header {
 .account.authorized {
     font-size: 16px;
 }
+
 .account.authorized::before {
     background-image: url(/img/icons/open-book.svg);
     width: 40px;
@@ -178,13 +180,15 @@ header {
 
 .exit-button-form {
     align-self: center;
-   margin-top: 6px;
+    margin-top: 6px;
 }
+
 .exit-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
+
 .exit-button:after {
     content: "";
     background-image: url(/img/icons/logout.svg);
@@ -195,6 +199,7 @@ header {
     width: 24px;
     vertical-align: bottom;
 }
+
 .header-bottom {
     display: flex;
     justify-content: space-between;
@@ -563,6 +568,21 @@ li.active-tab {
     border-radius: 10px;
     text-align: center;
     vertical-align: middle;
+    text-decoration: none;
+    background-color: var(--mainColorIndex);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lora', serif;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.book-search-catalogs>a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
 }
 
 .book-search-catalogs>a:first-child {
@@ -686,12 +706,6 @@ li.active-tab {
 }
 
 
-
-footer {
-    background-color: var(--mainColorIndex);
-    height: 160px;
-}
-
 main.blank_page {
     display: flex;
     justify-content: center;
@@ -699,4 +713,159 @@ main.blank_page {
     color: var(--mainColorIndex);
     font-family: 'Lora', serif;
     font-size: 14px;
+}
+
+.catalogs-main-page {
+    padding: 30px;
+    width: 1020px;
+}
+
+.catalogs-main-page h1 {
+
+    font-family: 'Prosto One', cursive;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--mainColorIndex);
+    margin-bottom: 30px;
+}
+
+
+.catalogOfPrintedBooksFilterBlock {
+    max-width: 1020px;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.catalogOfPrintedBooksFilterBlock>form {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lora', serif;
+    flex-grow: 1;
+}
+
+.catalogOfPrintedBooksFilterBlock>form>.formsSelect {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 30px;
+}
+
+p.set-filter {
+    flex-shrink: 0;
+    margin-right: 10px;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.catalogOfPrintedBooksFilterBlock>form>div>div {
+    display: flex;
+    justify-content: end;
+    align-items: baseline;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.catalogOfPrintedBooksFilterBlock>form>div>div:last-child {
+    margin-right: 0;
+}
+
+.catalogOfPrintedBooksFilterBlock>form>div>div>p {
+    margin-right: 5px;
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+.catalogOfPrintedBooksFilterBlock>form option {
+    font-family: 'Lora', serif;
+}
+
+.catalogOfPrintedBooksFilterBlock .formsSelect input {
+    font-family: 'Lora', serif;
+    padding: 2px;
+    font-size: 14px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid #6B6B6B;
+    border-radius: 4px;
+}
+
+.forms-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.catalogOfPrintedBooksFilterBlock>form button:nth-of-type(1) {
+    border: none;
+    font-family: inherit;
+    padding: 12px 10px;
+    width: 200px;
+    font-weight: 700;
+    font-size: inherit;
+    color: #FFFFFF;
+    border-radius: 5px;
+    background-color: var(--mainColorIndex);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[name=filterClearBtn] {
+    border: none;
+    background-color: transparent;
+    color: var(--mainColorIndex);
+    font-family: inherit;
+    padding: 12px 0;
+    width: 200px;
+    font-weight: 500;
+    font-size: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: right;
+}
+
+.catalog-table {
+    border-collapse: collapse;
+    width: 950px;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+}
+
+.catalog-table td,
+.catalog-table th {
+    border: 1px dashed #6B6B6B;
+    padding: 6px 4px;
+}
+
+.catalog-table th {
+    font-size: 16px;
+    padding: 8px;
+}
+
+.catalog-table .status {
+    padding-right: 20px;
+}
+
+.catalog-table .books-name,
+.catalog-table .author {
+    width: 300px;
+}
+
+.catalog-table .vendor-code {
+    text-align: center;
+    width: 80px;
+}
+
+.catalog-table tr td:last-child {
+    width: 100px;
+}
+
+.catalog-table td:not(td:first-child) {
+    padding-left: 10px;
+}
+
+footer {
+    background-color: var(--mainColorIndex);
+    height: 160px;
 }

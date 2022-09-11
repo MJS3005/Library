@@ -28,7 +28,7 @@ require_once "$path/private/head.php";
                 <h2 class="hidden-element">Поиск изданий</h2>
 
                 <div class="book-search-catalogs">
-                    <a href="#">Каталог печатных изданий</a>
+                    <a href = "public/catalogOfPrintedBooks.php">Каталог печатных изданий</a>
                     <a href="#">Электронная библиотека</a>
                 </div>
 
